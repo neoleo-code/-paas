@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-bg-main: #0A0A0C;
+  --color-surface: rgba(25, 25, 28, 0.6);
+  --color-surface-border: #1F1F22;
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: #86868B;
+  
+  --color-accent-start: #007AFF;
+  --color-accent-end: #00C6FF;
+  
+  --color-warn-start: #FF2D55;
+  --color-warn-end: #FF375F;
+  
+  --color-success-start: #32D74B;
+  --color-success-end: #30D158;
+}
+
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: var(--color-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-surface-border);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Neon Breathing Animations - Subtle & Refined */
+@keyframes breathing-blue {
+  0% { box-shadow: 0 0 8px rgba(0, 122, 255, 0.15), inset 0 0 4px rgba(0, 122, 255, 0.05); border-color: rgba(0, 122, 255, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(0, 198, 255, 0.4), inset 0 0 10px rgba(0, 198, 255, 0.15); border-color: rgba(0, 198, 255, 0.6); }
+}
+
+@keyframes breathing-green {
+  0% { box-shadow: 0 0 8px rgba(50, 215, 75, 0.1), inset 0 0 4px rgba(50, 215, 75, 0.05); border-color: rgba(50, 215, 75, 0.2); }
+  100% { box-shadow: 0 0 20px rgba(48, 209, 88, 0.3), inset 0 0 10px rgba(48, 209, 88, 0.1); border-color: rgba(48, 209, 88, 0.5); }
+}
+
+@keyframes breathing-red {
+  0% { box-shadow: 0 0 8px rgba(255, 45, 85, 0.15), inset 0 0 4px rgba(255, 45, 85, 0.05); border-color: rgba(255, 45, 85, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(255, 55, 95, 0.4), inset 0 0 10px rgba(255, 55, 95, 0.15); border-color: rgba(255, 55, 95, 0.6); }
+}
+
+@keyframes breathing-purple {
+  0% { box-shadow: 0 0 8px rgba(168, 85, 247, 0.15), inset 0 0 4px rgba(168, 85, 247, 0.05); border-color: rgba(168, 85, 247, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.6); }
+}
+
+@keyframes breathing-amber {
+  0% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.15), inset 0 0 4px rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4), inset 0 0 10px rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.6); }
+}
+
+@keyframes breathing-text-blue {
+  0% { text-shadow: 0 0 8px rgba(0, 122, 255, 0.3); }
+  100% { text-shadow: 0 0 16px rgba(0, 198, 255, 0.6), 0 0 8px rgba(0, 198, 255, 0.3); }
+}
+
+@keyframes breathing-ambient {
+  0% { opacity: 0.4; transform: scale(0.95) translateX(-50%); }
+  100% { opacity: 0.8; transform: scale(1.05) translateX(-50%); }
+}
+
+.neon-breathe-blue {
+  animation: breathing-blue 2.5s ease-in-out infinite alternate;
+}
+
+.hover\:neon-breathe-blue:hover {
+  animation: breathing-blue 2.5s ease-in-out infinite alternate;
+}
+
+.neon-breathe-green {
+  animation: breathing-green 3s ease-in-out infinite alternate;
+}
+
+.hover\:neon-breathe-green:hover {
+  animation: breathing-green 3s ease-in-out infinite alternate;
+}
+
+.neon-breathe-red {
+  animation: breathing-red 1.5s ease-in-out infinite alternate;
+}
+
+.hover\:neon-breathe-red:hover {
+  animation: breathing-red 1.5s ease-in-out infinite alternate;
+}
+
+.neon-breathe-purple {
+  animation: breathing-purple 2.5s ease-in-out infinite alternate;
+}
+
+.hover\:neon-breathe-purple:hover {
+  animation: breathing-purple 2.5s ease-in-out infinite alternate;
+}
+
+.neon-breathe-amber {
+  animation: breathing-amber 2.5s ease-in-out infinite alternate;
+}
+
+.hover\:neon-breathe-amber:hover {
+  animation: breathing-amber 2.5s ease-in-out infinite alternate;
+}
+
+.focus\:neon-breathe-blue:focus {
+  animation: breathing-blue 2.5s ease-in-out infinite alternate;
+}
+
+.neon-text-blue {
+  animation: breathing-text-blue 2.5s ease-in-out infinite alternate;
+}
+
+.neon-ambient {
+  animation: breathing-ambient 5s ease-in-out infinite alternate;
+  transform-origin: left center;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(134, 134, 139, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(134, 134, 139, 0.5);
+}
+
+/* Landing Page Animations */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateZ(50px) translateY(0);
+  }
+  50% {
+    transform: translateZ(50px) translateY(-10px);
+  }
+}
