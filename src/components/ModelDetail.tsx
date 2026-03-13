@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Settings, Rocket, Code, Cpu, Zap, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Settings, Rocket, Code, Cpu, Zap, CheckCircle2, Box } from 'lucide-react';
 
 export interface Model {
   id: string;
@@ -46,7 +46,7 @@ export default function ModelDetail({ model, onBack }: ModelDetailProps) {
             style={{ boxShadow: `0 0 30px ${model.color}30` }}
           >
             <div className="absolute inset-0 rounded-3xl opacity-20" style={{ background: `radial-gradient(circle at top left, ${model.color}, transparent)` }} />
-            <BoxIcon color={model.color} size={32} />
+            <Box className="relative z-10" style={{ color: model.color }} size={32} />
           </div>
           <div>
             <h1 className="text-4xl font-semibold tracking-tight mb-2">{model.name}</h1>
@@ -216,7 +216,7 @@ print(response.choices[0].message.content)`
                   </div>
                 ) : isDeploying ? (
                   <div className="absolute inset-0 flex items-center">
-                    <div className="h-full bg-white/20 transition-all duration-75 ease-linear neon-breathe-blue w-full animate-pulse" />
+                  <div className="h-full bg-white/20 transition-all duration-75 ease-linear neon-breathe-amber w-full animate-pulse" />
                     <span className="absolute inset-0 flex items-center justify-center font-mono text-xs">
                       资源分配中...
                     </span>
@@ -237,15 +237,5 @@ print(response.choices[0].message.content)`
         </div>
       </div>
     </div>
-  );
-}
-
-function BoxIcon({ color, size = 24 }: { color: string, size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-      <line x1="12" y1="22.08" x2="12" y2="12"></line>
-    </svg>
   );
 }

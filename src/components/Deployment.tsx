@@ -64,7 +64,7 @@ export default function Deployment() {
         <div className="space-y-3 relative z-10">
           <label className="text-sm font-medium text-[var(--color-text-secondary)]">选择模型</label>
           <div className="relative">
-            <select className="w-full appearance-none bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent-start)] focus:neon-breathe-blue transition-all">
+            <select className="w-full appearance-none bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent-start)] focus:neon-breathe-amber transition-all">
               <option>Llama 3 70B (Instruct)</option>
               <option>Stable Diffusion XL</option>
               <option>Whisper v3</option>
@@ -83,8 +83,8 @@ export default function Deployment() {
               onClick={() => setSelectedHardware('a100')}
               className={`bg-black/30 border rounded-xl p-4 flex items-center gap-3 cursor-pointer transition-all ${
                 selectedHardware === 'a100' 
-                  ? 'border-[var(--color-accent-start)]/50 neon-breathe-blue' 
-                  : 'border-white/10 hover:border-white/30 hover:neon-breathe-blue'
+                  ? 'border-[var(--color-accent-start)]/50 neon-breathe-amber' 
+                  : 'border-white/10 hover:border-white/30 hover:neon-breathe-amber'
               }`}
             >
               <Cpu className={`w-5 h-5 ${selectedHardware === 'a100' ? 'text-[var(--color-accent-start)]' : 'text-[var(--color-text-secondary)]'}`} />
@@ -97,8 +97,8 @@ export default function Deployment() {
               onClick={() => setSelectedHardware('h100')}
               className={`bg-black/30 border rounded-xl p-4 flex items-center gap-3 cursor-pointer transition-all ${
                 selectedHardware === 'h100' 
-                  ? 'border-[var(--color-accent-start)]/50 neon-breathe-blue' 
-                  : 'border-white/10 hover:border-white/30 hover:neon-breathe-blue'
+                  ? 'border-[var(--color-accent-start)]/50 neon-breathe-amber' 
+                  : 'border-white/10 hover:border-white/30 hover:neon-breathe-amber'
               }`}
             >
               <Cpu className={`w-5 h-5 ${selectedHardware === 'h100' ? 'text-[var(--color-accent-start)]' : 'text-[var(--color-text-secondary)]'}`} />
@@ -117,7 +117,7 @@ export default function Deployment() {
             <span className="text-xs font-mono text-[var(--color-accent-start)]">1 - 5</span>
           </div>
           <div className="relative h-2 bg-white/10 rounded-full overflow-hidden">
-            <div className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] shadow-[0_0_10px_rgba(0,198,255,0.8)]" />
+            <div className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] shadow-[0_0_10px_rgba(245,158,11,0.8)]" />
           </div>
           <div className="flex justify-between text-xs text-[var(--color-text-secondary)]">
             <span>最小: 1 (关闭缩容至零)</span>
@@ -130,7 +130,7 @@ export default function Deployment() {
           {!isDeploying ? (
             <button 
               onClick={handleDeploy}
-              className="w-full h-14 rounded-2xl font-medium text-lg transition-all duration-500 bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] neon-breathe-blue text-white flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(0,122,255,0.4)]"
+              className="w-full h-14 rounded-2xl font-medium text-lg transition-all duration-500 bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] neon-breathe-amber text-white flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(245,158,11,0.4)]"
             >
               <Rocket className="w-5 h-5" />
               部署端点
@@ -145,7 +145,7 @@ export default function Deployment() {
               {/* Progress Bar */}
               <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] transition-all duration-75 ease-linear neon-breathe-blue"
+                  className="h-full bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] transition-all duration-75 ease-linear neon-breathe-amber"
                   style={{ width: `${progress}%` }}
                 />
               </div>

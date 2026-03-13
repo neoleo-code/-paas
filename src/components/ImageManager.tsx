@@ -39,7 +39,7 @@ const MOCK_IMAGES: CustomImage[] = [
 ];
 
 interface ImageManagerProps {
-  setActiveTab: (tab: string) => void;
+  setActiveTab: (tab: string, image?: CustomImage) => void;
 }
 
 export default function ImageManager({ setActiveTab }: ImageManagerProps) {
@@ -128,7 +128,7 @@ export default function ImageManager({ setActiveTab }: ImageManagerProps) {
                 type="text" 
                 required
                 placeholder="例如: my-custom-model"
-                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent-start)] focus:neon-breathe-blue transition-all"
+                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent-start)] focus:neon-breathe-amber transition-all"
               />
             </div>
 
@@ -137,13 +137,13 @@ export default function ImageManager({ setActiveTab }: ImageManagerProps) {
               <input 
                 type="text" 
                 defaultValue="latest"
-                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent-start)] focus:neon-breathe-blue transition-all"
+                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent-start)] focus:neon-breathe-amber transition-all"
               />
             </div>
 
             <div className="space-y-4 relative z-10">
               <label className="text-sm font-medium text-[var(--color-text-secondary)]">镜像文件 (.tar, .tar.gz)</label>
-              <div className="border-2 border-dashed border-white/10 hover:border-[var(--color-accent-start)]/50 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 transition-all cursor-pointer bg-black/20 group hover:neon-breathe-blue">
+              <div className="border-2 border-dashed border-white/10 hover:border-[var(--color-accent-start)]/50 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 transition-all cursor-pointer bg-black/20 group hover:neon-breathe-amber">
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-[var(--color-accent-start)]/10">
                   <Upload className="w-8 h-8 text-[var(--color-text-secondary)] group-hover:text-[var(--color-accent-start)] transition-colors" />
                 </div>
@@ -161,13 +161,13 @@ export default function ImageManager({ setActiveTab }: ImageManagerProps) {
                 className={`w-full relative overflow-hidden rounded-2xl font-medium text-lg transition-all duration-500 ${
                   isUploading 
                     ? 'h-14 bg-white/5 border border-white/10 cursor-not-allowed' 
-                    : 'h-14 bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] hover:neon-breathe-blue text-white'
+                    : 'h-14 bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] hover:neon-breathe-amber text-white'
                 }`}
               >
                 {isUploading ? (
                   <div className="absolute inset-0 flex items-center">
                     <div 
-                      className="h-full bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] transition-all duration-75 ease-linear neon-breathe-blue"
+                      className="h-full bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] transition-all duration-75 ease-linear neon-breathe-amber"
                       style={{ width: `${uploadProgress}%` }}
                     />
                     <span className="absolute inset-0 flex items-center justify-center font-mono text-xs z-10 text-white drop-shadow-md">
@@ -254,7 +254,7 @@ export default function ImageManager({ setActiveTab }: ImageManagerProps) {
 
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-6">
-            <div className="w-20 h-20 rounded-3xl flex items-center justify-center bg-white/5 border border-white/10 relative shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+            <div className="w-20 h-20 rounded-3xl flex items-center justify-center bg-white/5 border border-white/10 relative shadow-[0_0_30px_rgba(245,158,11,0.15)]">
               <ImageIcon className="w-10 h-10 text-purple-400" />
             </div>
             <div>
@@ -273,8 +273,8 @@ export default function ImageManager({ setActiveTab }: ImageManagerProps) {
             </div>
           </div>
           <button 
-            onClick={() => setActiveTab('deploy')}
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] text-white font-medium hover:shadow-[0_0_30px_rgba(0,122,255,0.4)] transition-all neon-breathe-blue"
+            onClick={() => setActiveTab('deployment', selectedImage)}
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] text-white font-medium hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] transition-all neon-breathe-amber"
           >
             部署此镜像
           </button>
@@ -354,7 +354,7 @@ CMD ["python", "-m", "vllm.entrypoints.api_server"]`}
         </div>
         <button 
           onClick={() => setView('upload')}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] text-white font-medium hover:shadow-[0_0_30px_rgba(0,122,255,0.4)] transition-all neon-breathe-blue"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[var(--color-accent-start)] to-[var(--color-accent-end)] text-white font-medium hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] transition-all neon-breathe-amber"
         >
           <Plus className="w-5 h-5" />
           上传镜像

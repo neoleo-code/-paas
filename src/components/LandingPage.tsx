@@ -3,6 +3,7 @@ import { ArrowUp, Check, ChevronDown, Box, Sparkles, X, Server, Cpu, HardDrive, 
 
 interface LandingPageProps {
   onEnter: (tab?: string, modelId?: string) => void;
+  onAuth: () => void;
 }
 
 const IMAGES = [
@@ -20,7 +21,7 @@ const COMMUNITY_IMAGES = [
   { name: 'JupyterLab Data Science', desc: '包含 Pandas, NumPy, Scikit-learn 等数据科学工具。', downloads: '9.8k', tags: ['Jupyter', 'Data Science', 'Python'], size: '5.5GB', updated: '1个月前', command: 'docker pull bitahub/jupyterlab:data-science' },
 ];
 
-export default function LandingPage({ onEnter }: LandingPageProps) {
+export default function LandingPage({ onEnter, onAuth }: LandingPageProps) {
   const [selectedImage, setSelectedImage] = useState(IMAGES[0]);
   const [selectedImageDetail, setSelectedImageDetail] = useState<any | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -81,6 +82,9 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
         <button onClick={() => setActiveView('images')} className={`text-sm transition-colors ${activeView === 'images' ? 'text-white' : 'text-gray-400 hover:text-white'}`}>镜像社区</button>
         <button onClick={() => setActiveView('deploy')} className={`text-sm transition-colors ${activeView === 'deploy' ? 'text-white' : 'text-gray-400 hover:text-white'}`}>部署GPU实例</button>
         <button onClick={() => setActiveView('help')} className={`text-sm transition-colors ${activeView === 'help' ? 'text-white' : 'text-gray-400 hover:text-white'}`}>帮助中心</button>
+        <div className="w-px h-4 bg-white/10" />
+        <button onClick={onAuth} className="text-sm text-gray-400 hover:text-white transition-colors">登录/注册</button>
+        <button onClick={() => onEnter('dashboard')} className="text-sm text-amber-500 hover:text-amber-400 transition-colors font-medium">控制台</button>
       </nav>
 
       {/* Main Content */}
@@ -207,7 +211,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {COMMUNITY_IMAGES.slice(0, 3).map((img, i) => (
-            <div key={i} onClick={() => setSelectedImageDetail(img)} className="p-6 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:bg-[#221C18] hover:border-amber-500/30 transition-all cursor-pointer group">
+            <div key={i} onClick={() => setSelectedImageDetail(img)} className="p-6 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:bg-[#221C18] hover:border-amber-500/30 transition-all cursor-pointer group hover:neon-breathe-amber">
               <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 mb-5 group-hover:bg-amber-500/20 transition-colors">
                 <Box className="w-6 h-6 text-amber-500" />
               </div>
@@ -235,7 +239,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           <p className="text-gray-400 mb-10">探索并使用预配置的深度学习环境和基础模型镜像。</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {COMMUNITY_IMAGES.map((img, i) => (
-              <div key={i} onClick={() => setSelectedImageDetail(img)} className="p-6 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:bg-[#221C18] hover:border-amber-500/30 transition-all cursor-pointer group">
+              <div key={i} onClick={() => setSelectedImageDetail(img)} className="p-6 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:bg-[#221C18] hover:border-amber-500/30 transition-all cursor-pointer group hover:neon-breathe-amber">
                 <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 mb-5 group-hover:bg-amber-500/20 transition-colors">
                   <Box className="w-6 h-6 text-amber-500" />
                 </div>
@@ -270,7 +274,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                   { name: 'NVIDIA RTX 4090', price: '$0.80', mem: '24GB VRAM', perf: '高性价比，适合中小型模型微调' },
                   { name: 'NVIDIA L40S', price: '$1.20', mem: '48GB VRAM', perf: '通用图形与 AI 加速' },
                 ].map((gpu, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:border-amber-500/30 transition-colors cursor-pointer group">
+                  <div key={i} className="flex items-center justify-between p-5 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:border-amber-500/30 transition-colors cursor-pointer group hover:neon-breathe-amber">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 group-hover:bg-amber-500/20 transition-colors">
                         <Cpu className="w-6 h-6 text-amber-500" />
@@ -320,7 +324,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                 { q: '支持哪些深度学习框架？', a: '我们的镜像社区提供了预装 PyTorch, TensorFlow, JAX 等主流框架的镜像。您也可以使用基础 Ubuntu 镜像自行安装所需环境。所有官方镜像均已配置好对应的 CUDA 和 cuDNN。' },
                 { q: '实例关机后数据会丢失吗？', a: '不会。只要您不主动"销毁"实例，系统盘和挂载的数据盘数据都会永久保留。但请注意，关机状态下仍会收取少量的磁盘存储费用。' },
               ].map((faq, i) => (
-                <div key={i} className="p-6 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:bg-[#221C18] transition-colors">
+                <div key={i} className="p-6 rounded-2xl border border-white/10 bg-[#1A1512]/50 hover:bg-[#221C18] transition-colors hover:neon-breathe-amber">
                   <h3 className="text-lg font-medium text-gray-200 mb-3">{faq.q}</h3>
                   <p className="text-gray-400 leading-relaxed text-sm">{faq.a}</p>
                 </div>
@@ -593,7 +597,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
 function NodeCard({ x, y, label, delay }: { x: number, y: number, label: string, delay: string }) {
   return (
     <div 
-      className="absolute w-56 h-32 rounded-2xl border border-white/10 bg-[#221C18]/90 backdrop-blur-xl p-5 flex flex-col justify-between shadow-2xl z-20 transition-transform duration-700 hover:-translate-y-2 animate-[float_6s_ease-in-out_infinite]"
+      className="absolute w-56 h-32 rounded-2xl border border-white/10 bg-[#221C18]/90 backdrop-blur-xl p-5 flex flex-col justify-between shadow-2xl z-20 transition-transform duration-700 hover:-translate-y-2 animate-[float_6s_ease-in-out_infinite] hover:neon-breathe-amber"
       style={{ left: x, top: y, transform: 'translateZ(50px)', animationDelay: delay }}
     >
       <div>

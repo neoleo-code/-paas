@@ -20,10 +20,14 @@ export default function Monitoring() {
   }, []);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-700">
-      <header className="mb-10">
-        <h1 className="text-3xl font-semibold tracking-tight mb-2">服务监控</h1>
-        <p className="text-[var(--color-text-secondary)]">实时推理流量与弹性扩缩容监控。</p>
+    <div className="flex flex-col gap-8 animate-in fade-in duration-700">
+      <header className="flex justify-between items-end px-2">
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-tertiary)] font-semibold mb-1">
+            实时遥测 (Real-time Telemetry)
+          </div>
+          <h1 className="text-3xl font-light tracking-tight">服务监控</h1>
+        </div>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -31,8 +35,8 @@ export default function Monitoring() {
         <div className="glass-panel rounded-3xl p-8 min-h-[400px] flex flex-col relative overflow-hidden">
           <div className="flex justify-between items-center mb-8 relative z-10">
             <h2 className="text-lg font-medium">Llama-3-70B-Instruct</h2>
-            <div className="flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full bg-[var(--color-success-start)]/10 text-[var(--color-success-start)] border border-[var(--color-success-start)]/20">
-              <div className="w-2 h-2 rounded-full bg-[var(--color-success-start)] neon-breathe-green" />
+            <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-[var(--color-status-complete)]">
+              <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-status-complete)] shadow-[0_0_8px_var(--color-status-complete)]" />
               服务中
             </div>
           </div>
@@ -43,7 +47,7 @@ export default function Monitoring() {
               <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.05)]">
                 <Activity className="w-8 h-8 text-[var(--color-text-secondary)]" />
               </div>
-              <span className="text-xs text-[var(--color-text-secondary)] font-mono">网关</span>
+              <span className="text-[11px] text-[var(--color-text-tertiary)] font-mono uppercase tracking-widest">网关</span>
             </div>
 
             {/* Flow Lines */}
@@ -68,8 +72,8 @@ export default function Monitoring() {
                   <div className="flex flex-col items-center gap-2">
                     <div 
                       className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-500
-                        ${pod.status === 'active' && pod.load > 80 ? 'bg-[var(--color-warn-start)]/20 border-[var(--color-warn-start)]/50 neon-breathe-red' : 
-                          pod.status === 'active' ? 'bg-[var(--color-accent-start)]/20 border-[var(--color-accent-start)]/50 neon-breathe-blue' : 
+                        ${pod.status === 'active' && pod.load > 80 ? 'bg-[var(--color-status-failed)]/20 border-[var(--color-status-failed)]/50 neon-breathe-red' : 
+                          pod.status === 'active' ? 'bg-[var(--color-accent-start)]/20 border-[var(--color-accent-start)]/50 neon-breathe-amber' : 
                           'bg-white/5 border-white/10'}
                       `}
                     >
@@ -88,12 +92,12 @@ export default function Monitoring() {
         {/* Logs / Events */}
         <div className="glass-panel rounded-3xl p-6 flex flex-col">
           <h2 className="text-lg font-medium mb-6">系统事件</h2>
-          <div className="flex-1 bg-black/40 rounded-xl p-4 font-mono text-xs space-y-3 overflow-y-auto">
-            <div className="text-[var(--color-text-secondary)]">[10:05:22] <span className="text-[var(--color-success-start)]">INFO</span> 自动扩缩容: 检测到流量激增。</div>
+          <div className="flex-1 bg-black/40 rounded-xl p-4 font-mono text-[11px] space-y-3 overflow-y-auto leading-relaxed">
+            <div className="text-[var(--color-text-secondary)]">[10:05:22] <span className="text-[var(--color-status-complete)]">INFO</span> 自动扩缩容: 检测到流量激增。</div>
             <div className="text-[var(--color-text-secondary)]">[10:05:23] <span className="text-[var(--color-accent-start)]">SCALE</span> 正在分配新副本 (Pod-2)。</div>
-            <div className="text-[var(--color-text-secondary)]">[10:05:45] <span className="text-[var(--color-success-start)]">INFO</span> Pod-2 就绪。正在路由流量。</div>
+            <div className="text-[var(--color-text-secondary)]">[10:05:45] <span className="text-[var(--color-status-complete)]">INFO</span> Pod-2 就绪。正在路由流量。</div>
             <div className="text-[var(--color-text-secondary)]">[10:12:00] <span className="text-[var(--color-text-secondary)]">INFO</span> 流量恢复正常。</div>
-            <div className="text-[var(--color-text-secondary)]">[10:17:00] <span className="text-[var(--color-warn-start)]">SCALE</span> Pod-3 空闲超过 5 分钟。缩容至零。</div>
+            <div className="text-[var(--color-text-secondary)]">[10:17:00] <span className="text-[var(--color-status-failed)]">SCALE</span> Pod-3 空闲超过 5 分钟。缩容至零。</div>
             <div className="text-[var(--color-text-secondary)]">[10:17:02] <span className="text-[var(--color-text-secondary)]">INFO</span> Pod-3 已终止。</div>
           </div>
         </div>
